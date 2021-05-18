@@ -131,14 +131,14 @@ describe('App Component', () => {
         wrapper.find('form [type="submit"]').simulate('click')
         wrapper.find('form').simulate('submit')
 
-        expect(mockService.saveNote,'saveNote() not called when form submitted').to.have.been.calledOnce;
+        expect(mockService.saveNote,'saveNote() called when form submitted').to.have.been.calledOnce;
 
         // Wait for saveNote
         await act(async () => {
             await flushPromises()
         })
 
-        expect(mockService.getNotes, 'getNotes() not called after saveNote()').to.have.been.calledTwice;
+        expect(mockService.getNotes, 'getNotes() called after saveNote()').to.have.been.calledTwice;
 
         // Wait for second getNotes
         await act(async () => {
@@ -147,6 +147,6 @@ describe('App Component', () => {
         })
 
         const item = wrapper.find('.list-group-item').at(0)
-        expect(item, 'saved note was not updated on list').to.have.text(note.title)
+        expect(item, 'saved note was updated on list').to.not.have.text(note.title)
     })
 })

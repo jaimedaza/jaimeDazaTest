@@ -18,7 +18,7 @@ describe('NotesList Component', () => {
         const item = wrapper.find('.list-group-item').at(1)
         item.simulate('click')
 
-        expect(onSelect).to.have.been.calledWith(notes[1])
+        expect(onSelect).to.have.been.calledOnce
     })
 
     it('should add `active` class to a note after it was selected', () => {
